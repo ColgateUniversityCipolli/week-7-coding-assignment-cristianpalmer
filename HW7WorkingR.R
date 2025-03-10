@@ -5,10 +5,21 @@
 #and P (X ≥ x). Enable the user to specify the rate parameter λ.
 
 
-pois.prob <- function(x, size, prob, type="<="){
-  # Use dpois and ppois to conditionally return the correct probability
+pois.prob <- function(x, lambda, type="="){
+  if (type == "=") {
+    return(dpois(x, lambda))
+} else if (type == "!=") {
+    return(1 - dpois(x, lambda))
+} else if (type == "<") {
+    return(ppois(x - 1, lambda))
+} else if (type == "<=") {
+    return(ppois(x, lambda))
+} else if (type == ">") {
+    return(1 - ppois(x, lambda))
+} else if (type == ">=") {
+    return(1 - ppois(x - 1, lambda))
 }
-
+}
 ########################################################################
 
 ########################################################################
@@ -18,6 +29,18 @@ pois.prob <- function(x, size, prob, type="<="){
 #and P(X ≥ x) for a beta distribution. Enable the 
 #user to specify the shape parameters α and β.
 
-beta.prob <- function(x, size, prob, type="<="){
-  # Use dbeta and pbeta to conditionally return the correct probability
+beta.prob <- function(x, lambda, type="="){
+  if (type == "=") {
+    return(dbeta(x, lambda))
+  } else if (type == "!=") {
+    return(1 - dbeta(x, lambda))
+  } else if (type == "<") {
+    return(pbeta(x - 1, lambda))
+  } else if (type == "<=") {
+    return(pbeta(x, lambda))
+  } else if (type == ">") {
+    return(1 - pbeta(x, lambda))
+  } else if (type == ">=") {
+    return(1 - pbeta(x - 1, lambda))
+  }
 }
