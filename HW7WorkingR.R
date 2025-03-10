@@ -5,7 +5,7 @@
 #and P (X ≥ x). Enable the user to specify the rate parameter λ.
 
 
-pois.prob <- function(x, lambda, type="="){
+pois.prob <- function(x, lambda, type=""){
   if (type == "=") {
     return(dpois(x, lambda))
 } else if (type == "!=") {
@@ -29,18 +29,18 @@ pois.prob <- function(x, lambda, type="="){
 #and P(X ≥ x) for a beta distribution. Enable the 
 #user to specify the shape parameters α and β.
 
-beta.prob <- function(x, lambda, type="="){
+beta.prob <- function(x, alpha, beta, type=""){
   if (type == "=") {
-    return(dbeta(x, lambda))
+    return(dbeta(x, alpha, beta))
   } else if (type == "!=") {
-    return(1 - dbeta(x, lambda))
+    return(1 - dbeta(x, alpha, beta))
   } else if (type == "<") {
-    return(pbeta(x - 1, lambda))
+    return(pbeta(x - 1, alpha, beta))
   } else if (type == "<=") {
-    return(pbeta(x, lambda))
+    return(pbeta(x, alpha, beta))
   } else if (type == ">") {
-    return(1 - pbeta(x, lambda))
+    return(1 - pbeta(x, alpha, beta))
   } else if (type == ">=") {
-    return(1 - pbeta(x - 1, lambda))
+    return(1 - pbeta(x - 1, alpha, beta))
   }
 }
